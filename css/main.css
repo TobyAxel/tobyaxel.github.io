@@ -1,0 +1,18 @@
+.fuckingawesometitle {
+    font-size: 100px;
+    text-align: center;
+}
+
+.fuckingawesometitle a {
+    color: blue;
+    text-decoration: none;
+}
+
+.fuckingawesometitle a:hover {
+    color: yellow;
+}
+
+html {
+    background-image: url('corn.png');
+    background-size: 50px 50px;
+}

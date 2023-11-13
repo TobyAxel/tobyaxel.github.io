@@ -1,1 +1,42 @@
 <!DOCTYPE html>
+<html style="background-image: url('corn.png');">
+    <head>
+        <title>Corn Site</title>
+        <link href="css/main.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            
+        </header>
+
+        <article>
+            <div class="fuckingawesometitle">
+                <a id="badass" href="" onclick="balls()">GET CORN NOW!!!</a>
+            </div>
+        </article>
+
+        <footer>
+
+        </footer>
+    </body>
+</html>
+
+<script>
+    balls()
+    function balls() {
+        let x = Math.random() * 10;
+
+        if (x < 5) {
+            document.getElementById("badass").href = ("https://www.youtube.com/watch?v=901QXZLTrTQ")
+        }
+
+        if (x > 5) {
+            document.getElementById("badass").href = ("https://www.youtube.com/watch?v=rzLIUgnKY40")
+        }
+
+        if (x == 5) {
+            document.getElementById("badass").href = ("https://www.gameflare.com/online-game/five-nights-at-freddys/")
+        }
+    }
+</script>
