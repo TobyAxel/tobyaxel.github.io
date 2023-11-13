@@ -25,18 +25,18 @@
 <script>
     balls()
     function balls() {
-        let x = Math.random() * 10;
+        let x = Math.random() * 20;
 
-        if (x < 5) {
+        if (x <= 9) {
             document.getElementById("badass").href = ("https://www.youtube.com/watch?v=901QXZLTrTQ")
         }
 
-        if (x > 5) {
+        else if (x >= 11) {
             document.getElementById("badass").href = ("https://www.youtube.com/watch?v=rzLIUgnKY40")
         }
 
-        if (x == 5) {
-            document.getElementById("badass").href = ("https://www.gameflare.com/online-game/five-nights-at-freddys/")
+        else if (x = 10) {
+            document.getElementById("badass").href = ("https://www.gameflare.com/online-game/five-nights-at-freddys")
         }
     }
 </script>
