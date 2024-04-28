@@ -6,10 +6,13 @@ let is_black = false;
 let is_white = false;
 let white_king_moved = false;
 let black_king_moved = false;
+let white_rook_1_moved = false;
+let white_rook_2_moved = false;
+let black_rook_1_moved = false;
+let black_rook_2_moved = false;
 let turn = "white";
 
 move_audio = new Audio("../sound/move-piece.mp3");
-block_audio = new Audio("../sound/block-piece.mp3");
 
 function generateBoard() {
     document.getElementById("board").innerHTML = "";
@@ -386,6 +389,14 @@ function checkMove(selection, color, kingMovementCheck) {
                         }
                     }
                 }
+
+                if (isLegal) {
+                    if (selected_piece === "rook1") {
+                        white_rook_1_moved = true;
+                    } else {
+                        white_rook_2_moved = true;
+                    }
+                }
             }
             else if (selected_color === "black") {
                 if (position_array[0] === selected_loc_array[0]) {
@@ -478,6 +489,14 @@ function checkMove(selection, color, kingMovementCheck) {
                         if (!isBlocked) {
                             isLegal = true;
                         }
+                    }
+                }
+                
+                if (isLegal) {
+                    if (selected_piece === "rook1") {
+                        black_rook_1_moved = true;
+                    } else {
+                        black_rook_2_moved = true;
                     }
                 }
             }
@@ -1120,9 +1139,46 @@ function checkMove(selection, color, kingMovementCheck) {
 
                         if (!isBlocked) {
                             isLegal = true;
+                            white_king_moved = true;
                         }
                     }
                 }
+                else if (canmovevertical === 0 && canmovehorizontal === 2 && !white_king_moved) {
+                    if (position_array[0].charCodeAt(0) < selected_piece_loc[0].charCodeAt(0)) {
+                        for (let key in black_pieces) {
+                            isBlocked = false;
+                            if (black_pieces[key] === "d1" || black_pieces[key] === "c1" || black_pieces[key] === "b1") {
+                                isBlocked = true;
+                                break;
+                            } else if (white_pieces[key] === "d1" || white_pieces[key] === "c1" || white_pieces[key] === "b1") {
+                                isBlocked = true;
+                                break;
+                            }
+                        }
+                        if (!isBlocked && !white_rook_1_moved) {
+                            isLegal = true;
+                            white_king_moved = true;
+                            white_pieces["rook1"] = "d1";
+                        }
+                    } else {
+                        for (let key in black_pieces) {
+                            isBlocked = false;
+                            if (black_pieces[key] === "f1" || black_pieces[key] === "g1") {
+                                isBlocked = true;
+                                break;
+                            } else if (white_pieces[key] === "f1" || white_pieces[key] === "g1") {
+                                isBlocked = true;
+                                break;
+                            }
+                        }
+                        if (!isBlocked && !white_rook_2_moved) {
+                            isLegal = true;
+                            white_king_moved = true;
+                            white_pieces["rook2"] = "f1";
+                        }
+                    }
+                }
+
             } else if (selected_color === "black") {
                 let canmovehorizontal = Math.abs(selected_loc_array[0].charCodeAt(0) - position_array[0].charCodeAt(0));
                 let canmovevertical = Math.abs(selected_loc_array[1] - position_array[1]);
@@ -1154,6 +1210,42 @@ function checkMove(selection, color, kingMovementCheck) {
 
                         if (!isBlocked) {
                             isLegal = true;
+                            black_king_moved = true;
+                        }
+                    }
+                }
+                else if (canmovevertical === 0 && canmovehorizontal === 2 && !black_king_moved) {
+                    if (position_array[0].charCodeAt(0) < selected_piece_loc[0].charCodeAt(0)) {
+                        for (let key in white_pieces) {
+                            isBlocked = false;
+                            if (white_pieces[key] === "d8" || white_pieces[key] === "c8" || white_pieces[key] === "b8") {
+                                isBlocked = true;
+                                break;
+                            } else if (black_pieces[key] === "d8" || black_pieces[key] === "c8" || black_pieces[key] === "b8") {
+                                isBlocked = true;
+                                break;
+                            }
+                        }
+                        if (!isBlocked && !black_rook_1_moved) {
+                            isLegal = true;
+                            black_king_moved = true;
+                            black_pieces["rook1"] = "d8";
+                        }
+                    } else {
+                        for (let key in white_pieces) {
+                            isBlocked = false;
+                            if (white_pieces[key] === "f8" || white_pieces[key] === "g8") {
+                                isBlocked = true;
+                                break;
+                            } else if (black_pieces[key] === "f8" || black_pieces[key] === "g8") {
+                                isBlocked = true;
+                                break;
+                            }
+                        }
+                        if (!isBlocked && !black_rook_2_moved) {
+                            isLegal = true;
+                            black_king_moved = true;
+                            black_pieces["rook2"] = "f8";
                         }
                     }
                 }
