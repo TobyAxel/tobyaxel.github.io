@@ -4,7 +4,12 @@ let selected_piece_loc = "";
 let isBlocked = "";
 let is_black = false;
 let is_white = false;
+let white_king_moved = false;
+let black_king_moved = false;
 let turn = "white";
+
+move_audio = new Audio("../sound/move-piece.mp3");
+block_audio = new Audio("../sound/block-piece.mp3");
 
 function generateBoard() {
     document.getElementById("board").innerHTML = "";
@@ -174,6 +179,7 @@ function moveTo(selection, color) {
             black_pieces[selected_piece] = piece_to_move_to;
         }
     }
+        move_audio.play();
         changeTurn();
     }
     
@@ -184,7 +190,7 @@ function moveTo(selection, color) {
     generateBoard();
 }
 
-function checkMove(selection, color) {
+function checkMove(selection, color, kingMovementCheck) {
     let isLegal = false;
 
     let piece = selected_piece.slice(0, -1);
@@ -284,6 +290,7 @@ function checkMove(selection, color) {
                     }
                 }
             }
+            break;
 
         case "rook":
             if (selected_color === "white") {
@@ -476,11 +483,686 @@ function checkMove(selection, color) {
             }
             break;
 
+        case "bishop":
+            if (selected_color === "white") {
+                // If selected piece is lower than selected tile
+                if (selected_loc_array[1] < position_array[1]) {
+                    // if selected piece is more to the right than the selected tile
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                } else if (selected_loc_array[1] > position_array[1]) {
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (selected_color === "black") {
+                if (selected_loc_array[1] < position_array[1]) {
+                    // if selected piece is more to the right than the selected tile
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                } else if (selected_loc_array[1] > position_array[1]) {
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+
+        case "queen":
+            if (selected_color === "white") {
+                if (position_array[0] === selected_loc_array[0]) {
+
+                    if (position_array[1] < selected_loc_array[1]) {
+                        for (let i = selected_loc_array[1]; i >= position_array[1]; i--) {
+                            isBlocked = false;
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === selected_loc_array[0] + i && i !== position_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (white_pieces[key] === selected_loc_array[0] + i && i !== selected_loc_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+
+                    else if (position_array[1] > selected_loc_array[1]) {
+                        for (let i = selected_loc_array[1]; i <= position_array[1]; i++) {
+                            isBlocked = false;
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === selected_loc_array[0] + i && i !== position_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (white_pieces[key] === selected_loc_array[0] + i && i !== selected_loc_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                }
+                else if (position_array[1] === selected_loc_array[1]) {
+                    if (position_array[0].charCodeAt(0) < selected_loc_array[0].charCodeAt(0)) {
+                        for (let i = selected_loc_array[0].charCodeAt(0); i >= position_array[0].charCodeAt(0); i--) {
+                            isBlocked = false;
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== position_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (white_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== selected_loc_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                    else if (position_array[0].charCodeAt(0) > selected_loc_array[0].charCodeAt(0)) {
+                        for (let i = selected_loc_array[0].charCodeAt(0); i <= position_array[0].charCodeAt(0); i++) {
+                            isBlocked = false;
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== position_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (white_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== selected_loc_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                } else if (selected_loc_array[1] < position_array[1]) {
+                    // if selected piece is more to the right than the selected tile
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                } else if (selected_loc_array[1] > position_array[1]) {
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (selected_color === "black") {
+                if (position_array[0] === selected_loc_array[0]) {
+
+                    if (position_array[1] < selected_loc_array[1]) {
+                        for (let i = selected_loc_array[1]; i >= position_array[1]; i--) {
+                            isBlocked = false;
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === selected_loc_array[0] + i && i !== position_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (black_pieces[key] === selected_loc_array[0] + i && i !== selected_loc_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+
+                    else if (position_array[1] > selected_loc_array[1]) {
+                        for (let i = selected_loc_array[1]; i <= position_array[1]; i++) {
+                            isBlocked = false;
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === selected_loc_array[0] + i && i !== position_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (black_pieces[key] === selected_loc_array[0] + i && i !== selected_loc_array[1]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                }
+                else if (position_array[1] === selected_loc_array[1]) {
+                    if (position_array[0].charCodeAt(0) < selected_loc_array[0].charCodeAt(0)) {
+                        for (let i = selected_loc_array[0].charCodeAt(0); i >= position_array[0].charCodeAt(0); i--) {
+                            isBlocked = false;
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== position_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (black_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== selected_loc_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                    else if (position_array[0].charCodeAt(0) > selected_loc_array[0].charCodeAt(0)) {
+                        for (let i = selected_loc_array[0].charCodeAt(0); i <= position_array[0].charCodeAt(0); i++) {
+                            isBlocked = false;
+                            for (let key in white_pieces) {
+                                if (white_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== position_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                                else if (black_pieces[key] === String.fromCharCode(i) + selected_loc_array[1] && String.fromCharCode(i) !== selected_loc_array[0]) {
+                                    isBlocked = true;
+                                    break; // Exit the loop since we found a blocking piece
+                                }
+                            }
+
+                            if (isBlocked) {
+                                break;
+                            }
+                        }
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                } else if (selected_loc_array[1] < position_array[1]) {
+                    // if selected piece is more to the right than the selected tile
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] + i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                } else if (selected_loc_array[1] > position_array[1]) {
+                    if (selected_loc_array[0].charCodeAt(0) > position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) - i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    } else if (selected_loc_array[0].charCodeAt(0) < position_array[0].charCodeAt(0)) {
+                        for (let i = 0; i <= 8; i++) {
+                            isBlocked = false;
+                            let checkRow = selected_loc_array[1] - i;
+                            let checkColumn = String.fromCharCode(selected_loc_array[0].charCodeAt(0) + i);
+                            for (let key in black_pieces) {
+                                if (black_pieces[key] === checkColumn + checkRow && black_pieces[key] !== selected_piece_loc) {
+                                    isBlocked = true;
+                                    break;
+                                } else if (white_pieces[key] === checkColumn + checkRow && white_pieces[key] !== selection) {
+                                    isBlocked = true;
+                                    break;
+                                }
+                            }
+
+                            if (isBlocked === true) {
+                                break;
+                            }
+
+                            if (selection === checkColumn + checkRow && !isBlocked) {
+                                isLegal = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+
+        case "king":
+            if (selected_color === "white") {
+                let canmovehorizontal = Math.abs(selected_loc_array[0].charCodeAt(0) - position_array[0].charCodeAt(0));
+                let canmovevertical = Math.abs(selected_loc_array[1] - position_array[1]);
+
+                if ((canmovehorizontal === 1 || canmovehorizontal === 0) && (canmovevertical === 1 || canmovevertical === 0)) {
+                    isLegal = true;
+
+                    if (!kingMovementCheck) {
+                        for (let key in black_pieces) {
+                            isBlocked = false;
+                            saved_piece_loc = selected_piece_loc;
+                            selected_piece_loc = black_pieces[key];
+                            saved_piece = selected_piece;
+                            selected_piece = key;
+                            saved_color = selected_color;
+                            selected_color = "black";
+                            
+                            if (checkMove(selection, "white", true)) {
+                                isBlocked = true;
+                                isLegal = false;
+                                break;
+                            } else {
+                                isLegal = true;
+                                selected_piece_loc = saved_piece_loc;
+                                selected_piece = saved_piece;
+                                selected_color = saved_color;
+                            }
+                        }
+
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                }
+            } else if (selected_color === "black") {
+                let canmovehorizontal = Math.abs(selected_loc_array[0].charCodeAt(0) - position_array[0].charCodeAt(0));
+                let canmovevertical = Math.abs(selected_loc_array[1] - position_array[1]);
+
+                if ((canmovehorizontal === 1 || canmovehorizontal === 0) && (canmovevertical === 1 || canmovevertical === 0)) {
+                    isLegal = true;
+
+                    if (!kingMovementCheck) {
+                        for (let key in white_pieces) {
+                            isBlocked = false;
+                            saved_piece_loc = selected_piece_loc;
+                            selected_piece_loc = white_pieces[key];
+                            saved_piece = selected_piece;
+                            selected_piece = key;
+                            saved_color = selected_color;
+                            selected_color = "white";
+                            
+                            if (checkMove(selection, "black", true)) {
+                                isBlocked = true;
+                                isLegal = false;
+                                break;
+                            } else {
+                                isLegal = true;
+                                selected_piece_loc = saved_piece_loc;
+                                selected_piece = saved_piece;
+                                selected_color = saved_color;
+                            }
+                        }
+
+                        if (!isBlocked) {
+                            isLegal = true;
+                        }
+                    }
+                }
+            }
+
         default:
             break;
     }
 
-    console.log("is legal:", isLegal)
     return isLegal;
 }
 
