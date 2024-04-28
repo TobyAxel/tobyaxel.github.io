@@ -54,7 +54,7 @@ function generateBoard() {
                     piece.style.backgroundImage = 'url("../img/pieces/' + cutkey + '_w.png")'
 
                     // Add click event listener for selecting the piece if it's white's turn
-                    if (selected_piece === "" && turn === "white") {
+                    if (turn === "white") {
                         piece.addEventListener('click', function() {
                             piece.style.filter = "brightness(150%)";
                             selectPiece(charCode + i, "white");
@@ -83,7 +83,7 @@ function generateBoard() {
                     piece.style.backgroundImage = 'url("../img/pieces/' + cutkey + '_b.png")'
 
                     // Add click event listener for selecting the piece if it's black's turn
-                    if (selected_piece === "" && turn === "black") {
+                    if (turn === "black") {
                         piece.addEventListener('click', function() {
                             selectPiece(charCode + i, "black");
                         });
