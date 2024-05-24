@@ -7,6 +7,6 @@ function sendMessage() {
     const message = document.getElementById('message').value;
 
     if (message === "chess") {
-        window.location.href = "../secret/html/chess.html";
+        window.location.href = "../secret/html/chess";
     }
 }
