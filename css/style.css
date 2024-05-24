@@ -219,6 +219,10 @@ header nav a.selected {
     margin-left: 30px;
 }
 
+.timeframe_content_title {
+    text-decoration: underline;
+}
+
 /* screen4 */
 .screen4 {
     background-color: rgb(20, 20, 20);
