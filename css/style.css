@@ -1,30 +1,30 @@
-/* Body */
-
-body {
-    margin: 0;
-
-    color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(30, 30, 30);
-    overflow-x: hidden;
-}
-
-/* Header */
-
-header {
-    height: 100px;
-    width: 100vw;
-    position: absolute;
-    align-items: center;
-    display: flex;
+/* Body & Html */
+html {
+    scroll-behavior: smooth;
     cursor: default;
 }
 
-.name {
+body {
+    margin: 0;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(35, 35, 35);
+}
+
+/* Header */
+header {
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    cursor: default;
+}
+
+header .name {
     margin: 0 25px;
     position: absolute;
     left: 100px;
-
     font-size: 30px;
     font-weight: 300;
 }
@@ -37,56 +37,52 @@ header nav {
 header nav a {
     margin: 0 25px;
     transition: 0.1s;
-    
     color: white;
     font-size: 25px;
     font-weight: lighter;
     text-decoration: none;
 }
 
-header nav a:hover {
-    color: rgb(255, 255, 255, 0.5);
-}
-
-.selected {
-    color: rgb(255, 255, 255, 0.5);
+header nav a:hover,
+header nav a.selected {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 /* About page */
-
-/* screen1 */
-
-.screen1 {
+.screen1,
+.screen2,
+.screen3 {
     height: 100vh;
-    background-color: rgb(30, 30, 30);
 }
 
-.main_text {
+.screen1 {
+    background-color: rgb(35, 35, 35);
+}
+
+.screen1 .main_text {
     position: absolute;
     top: 40vh;
-    left: 20vw;
+    left: 15vw;
     width: 430px;
-
     font-size: 20px;
     font-weight: lighter;
 }
 
-.main_title {
+.screen1 .main_title {
     font-size: 40px;
     font-weight: 300;
     color: rgb(120, 120, 200);
 }
 
 .main_text nav {
-    margin-top: 15px;
+    padding-top: 15px;
 }
 
-.main_text a {
+.screen1 .main_text nav a {
     transition: 0.2s;
     margin-right: 5px;
     padding: 12px 20px;
-
-    background-color: rgb(100, 100, 100, 0.4);
+    background-color: rgba(100, 100, 100, 0.4);
     border-radius: 7px;
     border: none;
     color: white;
@@ -95,35 +91,142 @@ header nav a:hover {
     text-decoration: none;
 }
 
-.main_text a:hover {
+.screen1 .main_text nav a:hover {
     filter: brightness(75%);
 }
 
 .down_arrow {
     position: absolute;
     display: flex;
-    width: 100vw;
-    justify-content: center;
-    bottom: 0;
-    margin: 20px 0;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
     cursor: pointer;
-
     font-family: sans-serif;
-    color: rgb(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.2);
     font-size: 30px;
-
+    text-decoration: none;
     animation: bobbing 2s infinite ease-in-out;
 }
 
-/* screen2 */
-
 .screen2 {
-    height: 100vh;
+    background-color: rgb(30, 30, 30);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen2 .screen2_title {
+    font-size: 50px;
+    font-weight: 100;
+    text-decoration: underline 2px;
+    text-align: center;
+    padding: 50px 0;
+    padding-top: 250px;
+}
+
+.screen2 .cards {
+    display: flex;
+    justify-content: center;
+}
+
+.screen2 .card {
+    margin: 0 20px;
+    border-radius: 20px;
+    width: 400px;
+    height: 55vh;
+    font-size: 20px;
+}
+
+.screen2 .card img {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.screen2 .card_title {
+    padding: 20px;
+    font-size: 30px;
+    font-weight: 100;
+    text-decoration: underline 1px;
+    text-align: center;
+}
+
+.item {
+    margin-left: 144px;
+    padding-bottom: 5px;
+}
+
+/* screen3 */
+.screen3 {
     background-color: rgb(25, 25, 25);
 }
 
-/* Animations */
+.screen3 .contact {
+    position: relative;
+    top: 15%;
+    margin: auto;
+    width: 900px;
+    height: 700px;
+    background-color: rgb(35, 35, 35);
+    border-radius: 25px;
+    font-size: 20px;
+}
 
+.screen3 .screen3_title {
+    padding: 40px 100px;
+    padding-bottom: 0;
+    font-size: 50px;
+    font-weight: 100;
+}
+
+.screen3 form {
+    padding: 20px 75px;
+    margin-bottom: 0;
+}
+
+.screen3 form input,
+.screen3 form .message_input {
+    background-color: transparent;
+    border: 2px solid rgb(94, 94, 94);
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: white;
+    font-size: 15px;
+}
+
+.screen3 form .name_input,
+.screen3 form .email_input {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.screen3 form .message_input {
+    height: 200px;
+    resize: none;
+}
+
+.screen3 .button_aligner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.screen3 .send_button {
+    height: 75px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgba(80, 80, 80, 0.1);
+    border: 2px solid rgb(94, 94, 94);
+    color: white;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+/* Animations */
 @keyframes bobbing {
     0% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
