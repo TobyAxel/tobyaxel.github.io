@@ -45,9 +45,14 @@ header nav a {
 }
 
 header nav img {
+    transition: 0.2s;
     display: none;
     filter: invert(100%);
     width: 30px;
+}
+
+header nav img:hover {
+    filter: invert(30%);
 }
 
 header nav a:hover,
