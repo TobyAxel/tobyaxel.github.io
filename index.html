@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Akseli Hyvönen - About</title>
         <link href="css/style.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Just+Me+Again+Down+Here&display=swap" rel="stylesheet">
     </head>
 
     <body>
         <header>
-            <a class="logo" href="../index.html">AkseLoft</a>
+            <span class="name">Akseli Hyvönen</span>
+
             <nav>
-                <a id="contact" onclick="changePage('contact')">Contact</a>
-                <a id="home" onclick="changePage('home')">Home</a>
-                <a id="playground" onclick="changePage('playground')">Playground</a>
+                <a class="selected" href="index.html">About</a>
+                <a href="works.html">Works</a>
+                <a href="contact.html">Contact</a>
             </nav>
         </header>
 
         <main>
-            <div id="contact_page" class="page">
-                contact
-            </div>
-
-            <div id="home_page" class="page">
-                home
-            </div>
-
-            <div id="playground_page" class="page">
-                <div class="playground_page">
-                    <a href="html/chess.html" class="card"><div class="card_title">Chess</div></a>
+            <div class="screen1" id="screen1">
+                <div class="main_text">
+                    <span class="main_title">About Me</span>
+                    <br>
+                    <span>Hey, I'm Akseli Hyvönen, a student from Finland with an interest in full-stack development. Let's connect and learn together!</span>
+                    <br>
+                    <nav><a href="contact.html">Contact Me</a> <a href="contact.html">See My Works</a></nav>
                 </div>
+    
+                <div class="down_arrow" id="down_arrow">v</div>
             </div>
-        </main>
+
+            <div class="screen2" id="screen2">
+
+            </div>
+        </main>        
 
         <footer>
 
         </footer>
     </body>
 </html>
+
 <script src="js/main.js"></script>
