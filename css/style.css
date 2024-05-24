@@ -316,6 +316,10 @@ header nav a.selected {
         text-align: center;
         padding-bottom: 50px;
     }
+
+    .announcement_works {
+        font-size: 7vw;
+    }
 }
 
 @media (max-width: 850px) {
