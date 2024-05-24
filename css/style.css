@@ -224,6 +224,7 @@ header nav a.selected {
     color: white;
     font-size: 20px;
     font-weight: 100;
+    cursor: pointer;
 }
 
 /* Animations */

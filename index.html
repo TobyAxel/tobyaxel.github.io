@@ -25,7 +25,7 @@
                     <br>
                     <span>Hey, I'm Akseli Hyvönen, a dev from Finland with an interest in full-stack development, currently studying at a vocational school.</span>
                     <br>
-                    <nav><a href="#screen3">Contact Me</a> <a href="contact.html">See My Works</a></nav>
+                    <nav><a href="#screen3">Contact Me</a> <a href="works.html">See My Works</a></nav>
                 </div>
     
                 <a class="down_arrow" id="down_arrow" href="#screen2">v</a>
@@ -76,10 +76,10 @@
                         <span>Email:</span><br>
                         <input class="email_input"><br>
                         <span>Message:</span><br>
-                        <textarea class="message_input" id="message" oninput="changeAmount()" maxlength="300" disabled>Unfortunately I am not taking messages as of this moment.</textarea><br>
+                        <textarea class="message_input" id="message" oninput="changeAmount()" maxlength="300">Unfortunately I am not taking messages as of this moment.</textarea><br>
                         <span id="currentamount">0</span>/300
                     </form>
-                    <div class="button_aligner"><button class="send_button">Send</button></div>
+                    <div class="button_aligner"><button class="send_button" onclick="sendMessage()">Send</button></div>
                 </div>
             </div>
         </main>        
