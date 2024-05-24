@@ -32,6 +32,7 @@ header .name {
 header nav {
     position: absolute;
     right: 100px;
+    display: flex;
 }
 
 header nav a {
@@ -41,6 +42,12 @@ header nav a {
     font-size: 25px;
     font-weight: lighter;
     text-decoration: none;
+}
+
+header nav img {
+    display: none;
+    filter: invert(100%);
+    width: 30px;
 }
 
 header nav a:hover,
@@ -131,18 +138,19 @@ header nav a.selected {
     font-weight: 100;
     text-decoration: underline 2px;
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 75px;
 }
 
 .screen2 .cards {
     display: flex;
     justify-content: center;
+    padding-bottom: 75px;
 }
 
 .screen2 .card {
-    margin: 0 20px;
+    margin: 0 5vw;
     border-radius: 20px;
-    width: 400px;
+    width: 200px;
     font-size: 20px;
 }
 
@@ -162,7 +170,7 @@ header nav a.selected {
 }
 
 .item {
-    margin-left: 144px;
+    margin-left: 44px;
     padding-bottom: 5px;
 }
 
@@ -289,4 +297,93 @@ header nav a.selected {
     0% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
     100% { transform: translateY(0); }
+}
+
+/* Responsiveness */
+
+@media (max-width: 1350px) {
+    .me_image {
+      display: none;
+    }
+}
+
+@media (max-width: 1350px) {
+    .screen3_title, .timeframe, .timeframe_holder {
+        margin: auto;
+    }
+
+    .screen3_title {
+        text-align: center;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 850px) {
+    header nav span {
+        display: none;
+    }
+
+    header nav img {
+        display: block;
+    }
+
+    .screen2 .cards {
+        display: block;
+    }
+
+    .screen2 .card {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .screen2 .card_title {
+        text-align: left;
+        width: 100%;
+    }
+
+    .item {
+        margin-left: 20px;
+    }
+
+}
+
+@media (max-width: 740px) {
+
+    .name {
+        display: none;
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    header nav {
+        position: static;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .screen1 .main_text {
+        position: static;
+        left: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .screen1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .screen2 .card {
+ö        display: block;
+    }
+
+    .item {
+        display: inline-block;
+    }
 }
