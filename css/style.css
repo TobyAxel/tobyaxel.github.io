@@ -211,6 +211,7 @@ header nav a.selected {
     font-size: 40px;
     margin-left: 30px;
     padding-top: 10px;
+    font-weight: 300;
 }
 
 .timeframe_content {
@@ -233,6 +234,7 @@ header nav a.selected {
     height: 700px;
     border-radius: 25px;
     font-size: 20px;
+    font-weight: 100;
 }
 
 .screen4 .screen4_title {
