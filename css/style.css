@@ -51,7 +51,8 @@ header nav a.selected {
 /* About page */
 .screen1,
 .screen2,
-.screen3 {
+.screen3,
+.screen4 {
     height: 100vh;
 }
 
@@ -95,6 +96,14 @@ header nav a.selected {
     filter: brightness(75%);
 }
 
+.me_image {
+    position: absolute;
+    bottom: 45vh;
+    right: 15vw;
+    color: rgb(120, 120, 200);
+    font-size: 50px;
+}
+
 .down_arrow {
     position: absolute;
     display: flex;
@@ -113,7 +122,7 @@ header nav a.selected {
     background-color: rgb(30, 30, 30);
     position: relative;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -122,8 +131,7 @@ header nav a.selected {
     font-weight: 100;
     text-decoration: underline 2px;
     text-align: center;
-    padding: 50px 0;
-    padding-top: 250px;
+    padding-bottom: 50px;
 }
 
 .screen2 .cards {
@@ -135,7 +143,6 @@ header nav a.selected {
     margin: 0 20px;
     border-radius: 20px;
     width: 400px;
-    height: 55vh;
     font-size: 20px;
 }
 
@@ -160,35 +167,74 @@ header nav a.selected {
 }
 
 /* screen3 */
+
 .screen3 {
+    position: relative;
     background-color: rgb(25, 25, 25);
 }
 
-.screen3 .contact {
+.screen3_title {
+    font-size: 50px;
+    font-weight: 100;
+    margin-left: 200px;
+    padding-top: 100px;
+}
+
+.timeframe_holder {
+    margin-left: 200px;
+
+}
+
+.timeframe {
+    background-color: rgb(255, 255, 255, 0.05);
+    width: 500px;
+    height: 250px;
+    border-radius: 20px;
+    margin: 25px;
+    margin-left: 0;
+}
+
+.timeframe_title {
+    font-size: 40px;
+    margin-left: 30px;
+    padding-top: 10px;
+}
+
+.timeframe_content {
+    font-weight: 100;
+    margin-left: 30px;
+}
+
+/* screen4 */
+.screen4 {
+    background-color: rgb(20, 20, 20);
+    display: flex;
+    align-items: center;
+}
+
+.screen4 .contact {
     position: relative;
-    top: 15%;
     margin: auto;
     width: 900px;
     height: 700px;
-    background-color: rgb(35, 35, 35);
     border-radius: 25px;
     font-size: 20px;
 }
 
-.screen3 .screen3_title {
-    padding: 40px 100px;
+.screen4 .screen4_title {
+    padding: 30px 75px;
     padding-bottom: 0;
     font-size: 50px;
     font-weight: 100;
 }
 
-.screen3 form {
+.screen4 form {
     padding: 20px 75px;
     margin-bottom: 0;
 }
 
-.screen3 form input,
-.screen3 form .message_input {
+.screen4 form input,
+.screen4 form .message_input {
     background-color: transparent;
     border: 2px solid rgb(94, 94, 94);
     width: 100%;
@@ -198,24 +244,24 @@ header nav a.selected {
     font-size: 15px;
 }
 
-.screen3 form .name_input,
-.screen3 form .email_input {
+.screen4 form .name_input,
+.screen4 form .email_input {
     height: 40px;
     margin-bottom: 10px;
 }
 
-.screen3 form .message_input {
+.screen4 form .message_input {
     height: 200px;
     resize: none;
 }
 
-.screen3 .button_aligner {
+.screen4 .button_aligner {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.screen3 .send_button {
+.screen4 .send_button {
     height: 75px;
     width: 300px;
     border-radius: 10px;
@@ -225,6 +271,17 @@ header nav a.selected {
     font-size: 20px;
     font-weight: 100;
     cursor: pointer;
+}
+
+/* Works Screen */
+
+.announcement_works {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
 }
 
 /* Animations */
