@@ -379,11 +379,59 @@ header nav a.selected {
         align-items: center;
     }
 
+    .item {
+        display: inline-block;
+    }
+
     .screen2 .card {
-ö        display: block;
+        width: 90vw;
+    }
+
+    .timeframe {
+        width: 80vw;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .screen4_title {
+        text-align: center;
+    }
+
+    .screen4 .send_button {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .screen1 .main_text {
+        position: static;
+        left: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .screen1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .item {
         display: inline-block;
+    }
+
+    .screen2 .card {
+        width: 90vw;
+    }
+
+    .timeframe {
+        text-align: center;
+    }
+
+    .screen3_title {
+        font-size: 12vw;
     }
 }
