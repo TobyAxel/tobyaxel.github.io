@@ -582,7 +582,7 @@ function checkMove(selection, color, kingMovementCheck) {
                             isLegal = true;
                         }
                     }
-                    // If the rook is moving rightwards
+                    // If the rook is moving rightward
                     else if (position_array[0].charCodeAt(0) > selected_loc_array[0].charCodeAt(0)) {
                         // Check for obstacles along the path
                         for (let i = selected_loc_array[0].charCodeAt(0); i <= position_array[0].charCodeAt(0); i++) {
