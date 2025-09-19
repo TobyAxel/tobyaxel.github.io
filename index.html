@@ -1,117 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Akseli Hyvönen - About</title>
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="style.css" rel="stylesheet"/>
+    <title>Akseli Hyvönen | Portfolio</title>
+</head>
+<body>
+    <main class="no-scrollbar">
+        <section class="relative h-screen bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 px-4">
+            <!-- Centered hero content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <h1 class="text-7xl font-serif font-bold text-white mb-5">Akseli Hyvönen</h1>
+                <h2 class="text-3xl font-sans font-light text-gray-300 mb-6">
+                Software developer with experience in game development, backend, frontend, and full-stack projects.
+                </h2>
 
-    <body>
-        <header>
-            <span class="name">Akseli Hyvönen</span>
-
-            <nav>
-                <a class="selected" href="./"><span>About</span><img src="./img/icons/smallabout.svg"></a>
-                <a href="./works"><span>Works</span><img src="./img/icons/smallworks.svg"></a>
-                <a href="#contact"><span>Contact</span><img src="./img/icons/smallcontact.svg"></a>
-            </nav>
-        </header>
-
-        <main>
-            <div class="screen1" id="about">
-                <div class="main_text">
-                    <span class="main_title">About Me</span>
-                    <br>
-                    <span>Hey, I'm Akseli Hyvönen, a dev from Finland with an interest in full-stack development, currently studying at a vocational school.</span>
-                    <br>
-                    <nav><a href="#contact">Contact Me</a> <a href="./works">See My Works</a></nav>
-                </div>
-
-                <div class="me_image">[Placeholder Image]</div>
-    
-                <a class="move_arrow" href="#skills">v</a>
+                <nav class="mt-4 flex justify-center space-x-8 text-lg font-medium">
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+                </nav>
             </div>
 
-            <div class="screen2" id="skills">
-                <div class="screen2_container">
-                    <div class="screen2_title">My Skills</div>
+            <!-- Bottom skills snapshot -->
+            <div class="absolute bottom-10 left-0 right-0">
+                <ul class="flex flex-wrap justify-center gap-6 text-gray-300 text-lg">
 
-                    <div class="cards">
-                        <div class="card">
-                            <div class="card_title">Frontend</div>
-                            <div class="item" title="experienced"><img src="./img/icons/html.svg" alt=" ">HTML</div>
-                            <div class="item" title="experienced"><img src="./img/icons/css.svg" alt=" ">CSS</div>
-                            <div class="item" title="experienced"><img src="./img/icons/js.svg" alt=" ">JS/TS</div>
-                            <div class="item" title="average"><img src="./img/icons/react.svg" alt=" ">React</div>
-                            <div class="item" title="average"><img src="./img/icons/wpf.svg" alt=" ">WPF & WF</div>
-                        </div>
-    
-                        <div class="card">
-                            <div class="card_title">Backend</div>
-                            <div class="item" title="average"><img src="./img/icons/python.svg" alt=" ">Python</div>
-                            <div class="item" title="average"><img src="./img/icons/node.svg" alt=" ">Node.js</div>
-                            <div class="item" title="experienced"><img src="./img/icons/node.svg" alt=" ">Express.js</div>
-                            <div class="item" title="average"><img src="./img/icons/net.svg" alt=" ">.NET Core</div>
-                            <div class="item" title="average"><img src="./img/icons/cs.svg" alt=" ">C#</div>
-                        </div>
-    
-                        <div class="card">
-                            <div class="card_title">Other</div>
-                            <div class="item" title="experienced"><img src="./img/icons/git.svg" alt=" ">Git</div>
-                            <div class="item" title="average"><img src="./img/icons/mysql.svg" alt=" ">MySQL</div>
-                            <div class="item" title="average"><img src="./img/icons/postgre.svg" alt=" ">PostgreSQL</div>
-                            <div class="item" title="average"><img src="./img/icons/mongodb.svg" alt=" ">MongoDB</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <a class="move_arrow" href="#experience">v</a>
+                    <!-- Frontend -->
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">HTML</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">CSS</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">JS/TS</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">React</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Next.js</li>
+
+                    <!-- Backend -->
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Node.js</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Express</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">.NET Core</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Python</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">C#</li>
+
+                    <!-- Databases -->
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">MySQL</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">PostgreSQL</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">MongoDB</li>
+
+                    <!-- Tools / Other -->
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Git</li>
+                    <li class="px-4 py-2 bg-neutral-800 rounded-lg">Unity</li>
+
+                </ul>
             </div>
-
-            <div class="screen3" id="experience">
-                <div class="screen3_title">Past Experience</div>
-                <div class="timeframe_holder">
-                    <div class="timeframe">
-                        <div class="timeframe_title">Timeframe</div>
-                        <div class="timeframe_content">
-                            <span class="timeframe_content_title">Place I Worked In:</span><br>
-                            This is a placeholder, and will be filled later.<br>
-                            <span class="timeframe_content_title">My Occupation:</span><br>
-                            This is a placeholder as well.<br>
-                            <span class="timeframe_content_title">Other Notes:</span><br>
-                            This is YET another placeholder.<br>
-                    </div>
-                    </div>
-                </div>
-
-                <a class="move_arrow" href="#contact">v</a>
-            </div>
-
-            <div class="screen4" id="contact">
-                <div class="contact">
-                    <div class="screen4_title">
-                        Contact Me
-                    </div>
-                    <form>
-                        <span>Name:</span><br>
-                        <input class="name_input"><br>
-                        <span>Email:</span><br>
-                        <input class="email_input"><br>
-                        <span>Message:</span><br>
-                        <textarea class="message_input" id="message" oninput="changeAmount()" maxlength="300">Unfortunately I am not taking messages as of this moment.</textarea><br>
-                        <span id="currentamount">0</span>/300
-                    </form>
-                    <div class="button_aligner"><button class="send_button" onclick="sendMessage()">Send</button></div>
-                </div>
-                <a class="move_arrow" href="#about">^</a>
-            </div>
-        </main>        
-
-        <footer>
-
-        </footer>
-    </body>
+        </section>
+    </main>
+</body>
 </html>
-
-<script src="js/main.js"></script>
